@@ -1,0 +1,61 @@
+name: LDV WiFi Fan
+products:
+  - id: h2xswd4oyce7bikh
+    name: Cucina
+primary_entity:
+  entity: fan
+  dps:
+    - id: 51
+      type: boolean
+      name: switch
+    - id: 53
+      type: integer
+      name: speed
+      optional: true
+      range:
+        min: 1
+        max: 3
+secondary_entities:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      name: work_mode
+      type: string
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 25
+      name: scene
+      type: hex
+      optional: true
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        optional: true
